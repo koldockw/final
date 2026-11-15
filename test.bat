@@ -7,3 +7,7 @@ java -Djava.awt.headless=true -cp out moneypilot.CoreWorkflowTest
 if errorlevel 1 exit /b 1
 java -Djava.awt.headless=true -cp out moneypilot.HistoryLimitTest
 if errorlevel 1 exit /b 1
+java -Djava.awt.headless=true -cp out moneypilot.ProjectTest
+if errorlevel 1 exit /b 1
+java -Djava.awt.headless=true -cp out moneypilot.CsvLineErrorTest
+if errorlevel 1 exit /b 1
