@@ -19,9 +19,10 @@ public final class FileRepository implements Repository {
             Set<UUID> ids=new HashSet<>();
             for(int i=0;i<size;i++) {
                 String k="tx."+i+".";
-                Transaction t=new Transaction(UUID.fromString(p.getProperty(k+"id")),
-                    LocalDate.parse(p.getProperty(k+"date")), Transaction.Type.valueOf(p.getProperty(k+"type")),
-                    p.getProperty(k+"category"),new BigDecimal(p.getProperty(k+"amount")),p.getProperty(k+"note", ""));
+                Transaction t=new Transaction.Builder().id(UUID.fromString(p.getProperty(k+"id")))
+                    .date(LocalDate.parse(p.getProperty(k+"date"))).type(Transaction.Type.valueOf(p.getProperty(k+"type")))
+                    .category(p.getProperty(k+"category")).amount(new BigDecimal(p.getProperty(k+"amount")))
+                    .note(p.getProperty(k+"note", "")).build();
                 if(!ids.add(t.id())) throw new IllegalArgumentException("Duplicate ID");
                 list.add(t);
             }

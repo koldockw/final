@@ -37,4 +37,19 @@ public final class Transaction {
     public String note() { return note; }
     public BigDecimal amount() { return amount; }
 
+    // Builder: собираю операцию по полям, чтобы не путать аргументы конструктора.
+    public static class Builder {
+        private UUID id = UUID.randomUUID();
+        private LocalDate date = LocalDate.now();
+        private Type type;
+        private String category = "Other", note = "";
+        private BigDecimal amount;
+        public Builder id(UUID v) { id=v; return this; }
+        public Builder date(LocalDate v) { date=v; return this; }
+        public Builder type(Type v) { type=v; return this; }
+        public Builder category(String v) { category=v; return this; }
+        public Builder note(String v) { note=v; return this; }
+        public Builder amount(BigDecimal v) { amount=v; return this; }
+        public Transaction build() { return new Transaction(id,date,type,category,amount,note); }
+    }
 }
